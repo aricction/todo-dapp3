@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import sha256 from "js-sha256"; // Import sha256
+import {  API_BASE_URL  } from '../config'
 
 export function CreateTodo({ addTaskToBlockchain }) {
     const [title, setTitle] = useState("");
@@ -17,7 +18,7 @@ export function CreateTodo({ addTaskToBlockchain }) {
 
         try {
             // Store the task in the backend
-            const response = await axios.post("http://localhost:3000/api/todo", taskData);
+            const response = await axios.post(API_BASE_URL, taskData);
             console.log("Task created:", response.data);
 
             // Generate hash for blockchain storage
