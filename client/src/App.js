@@ -12,7 +12,7 @@ function App() {
         <Routes>
 
           <Route path="/" element={<LoginForm />} />
-          <Route path="/login" element={<Navigate to="/" />} />
+          <Route path="/login" element={<Navigate to="/todo" />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/todo" element={<ShowTodoList />} />
   
