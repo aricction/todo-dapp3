@@ -9,7 +9,7 @@ import { Analytics } from "./analytics";
 import { useRef } from "react";
 import { sha256 } from "js-sha256";
 import NavBar from "./navbar";
-import { TODO_LIST_ABI, TODO_LIST_ADDRESS } from '../config'
+import { TODO_LIST_ABI, TODO_LIST_ADDRESS, API_BASE_URL  } from '../config'
 import Chatbot from "./chatbot";
 // Set up Web3 and the contract
 const web3 = new Web3("http://127.0.0.1:7545");
@@ -76,7 +76,7 @@ const ShowTodoList = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/todo")
+      .get(API_BASE_URL)
       .then((res) => {
           console.log("Fetched Todos:", res.data);
           setTodo(res.data);
