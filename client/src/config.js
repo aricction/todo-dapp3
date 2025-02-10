@@ -1,3 +1,4 @@
+export const API_BASE_URL = "https://todo-dapp3-2.onrender.com"
 export const TODO_LIST_ADDRESS = '0xa6Eb71E0E97aCdDcBB4F083774a164F7Ab37D9B0'
 export const TODO_LIST_ABI = [
     
