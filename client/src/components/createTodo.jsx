@@ -1,28 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-<<<<<<< HEAD
-
-export function CreateTodo() {
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-
-    function handleSubmit(e) {
-        e.preventDefault();
-
-        const newTodo = {
-            title,
-            description,
-            completed: false, // New tasks are not completed by default
-        };
-
-        axios.post("http://localhost:3000/api/todo", newTodo)
-            .then((res) => {
-                setTitle("");
-                setDescription("");
-            })
-            .catch((err) => console.log("Failed to create task:", err.message));
-=======
-import { sha256 } from "js-sha256";
+import sha256 from "js-sha256"; // Import sha256
 
 export function CreateTodo({ addTaskToBlockchain }) {
     const [title, setTitle] = useState("");
@@ -58,7 +36,7 @@ export function CreateTodo({ addTaskToBlockchain }) {
         } catch (error) {
             console.error("Failed to create task:", error.message);
         }
->>>>>>> 84f2da2 (added ai and blockchain)
+
     }
 
     return (

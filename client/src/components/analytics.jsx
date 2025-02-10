@@ -3,31 +3,6 @@ import { Pie } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, LinearScale, ArcElement, Title, Legend);
 
-<<<<<<< HEAD
-export const Analytics = ({ todo }) => {
-    const completedTasks = todo.filter((task) => task.completed).length;
-    const incompleteTasks = todo.length - completedTasks;
-
-    const data = {
-        labels: ["Completed", "Incomplete"],
-        datasets: [
-            {
-                label: "Task Completion %",
-                data: [completedTasks, incompleteTasks],
-                backgroundColor: ["rgb(75, 192, 192)", "rgb(255, 99, 132)"], // Completed: Green, Incomplete: Red
-                hoverOffset: 4,
-            },
-        ],
-    };
-
-    return (
-        <div className="p-6 mt-6  lg:w-[450px] lg:h-[500px] bg-white shadow-md rounded-lg">
-            <h2 className="text-xl font-semibold mb-4">Analytics</h2>
-            <Pie data={data} className=" " />
-        </div>
-    );
-};
-=======
 export const Analytics = ({ todo, verifyTaskHash, handleComplete , handleCheckboxClick }) => {
     const completedTasks = todo.filter((task) => task.completed).length;
     const incompleteTasks = todo.length - completedTasks;
@@ -71,4 +46,4 @@ export const Analytics = ({ todo, verifyTaskHash, handleComplete , handleCheckbo
     );
   };
   
->>>>>>> 84f2da2 (added ai and blockchain)
+

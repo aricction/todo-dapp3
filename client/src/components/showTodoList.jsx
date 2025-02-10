@@ -7,41 +7,6 @@ import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { Analytics } from "./analytics";
 import { useRef } from "react";
-<<<<<<< HEAD
-
-// Set up Web3 and the contract
-const web3 = new Web3("https://rinkeby.infura.io/v3/YOUR_INFURA_PROJECT_ID");
-const contractAddress = "0xa6Eb71E0E97aCdDcBB4F083774a164F7Ab37D9B0";
-const contractABI = [
-  {
-    "inputs": [],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "inputs": [],
-    "name": "taskCount",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [],
-    "name": "addTask",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  }
-];
-const taskContract = new web3.eth.Contract(contractABI, contractAddress);
-=======
 import { sha256 } from "js-sha256";
 import NavBar from "./navbar";
 import { TODO_LIST_ABI, TODO_LIST_ADDRESS } from '../config'
@@ -51,7 +16,6 @@ const web3 = new Web3("http://127.0.0.1:7545");
 
 
 const taskContract = new web3.eth.Contract( TODO_LIST_ABI, TODO_LIST_ADDRESS);
->>>>>>> 84f2da2 (added ai and blockchain)
 
 function TodoCard({ data, handleEdit, handleDelete, handleComplete }) {
   const { _id, title, description, completed } = data;
@@ -108,20 +72,11 @@ const ShowTodoList = () => {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
   const [update, setUpdate] = useState(false);
-<<<<<<< HEAD
-  const [account, setAccount] = useState(""); // Account to sign transactions
-=======
   const [account, setAccount] = useState(""); // Store connected wallet address
->>>>>>> 84f2da2 (added ai and blockchain)
 
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/todo")
-<<<<<<< HEAD
-      .then((res) => setTodo(res.data))
-      .catch((err) => console.log(err.message));
-  }, [update]);
-=======
       .then((res) => {
           console.log("Fetched Todos:", res.data);
           setTodo(res.data);
@@ -129,7 +84,6 @@ const ShowTodoList = () => {
       .catch((err) => console.log(err.message));
 }, [update, axios]);
 
->>>>>>> 84f2da2 (added ai and blockchain)
 
   function handleEdit(e) {
     setId(e.currentTarget.name);
@@ -142,10 +96,6 @@ const ShowTodoList = () => {
 
   function handleDelete(e) {
     const todoId = e.currentTarget.name;
-<<<<<<< HEAD
-
-=======
->>>>>>> 84f2da2 (added ai and blockchain)
     axios
       .delete(`http://localhost:3000/api/todo/${todoId}`)
       .then(() => {
@@ -163,10 +113,6 @@ const ShowTodoList = () => {
             todo._id === todoId ? { ...todo, completed: completedStatus } : todo
           )
         );
-<<<<<<< HEAD
-        // Store task hash on blockchain (optional if needed)
-=======
->>>>>>> 84f2da2 (added ai and blockchain)
       })
       .catch((err) => console.log("Failed to update completion status", err.message));
   }
@@ -176,32 +122,6 @@ const ShowTodoList = () => {
     setOpen(false);
   }
 
-<<<<<<< HEAD
-  // Connect to Ethereum wallet (Metamask)
-  const handleLogin = async () => {
-    const accounts = await web3.eth.requestAccounts();
-    setAccount(accounts[0]);
-  };
-
-  // Add task to blockchain (if needed)
-  function addTaskToBlockchain() {
-    taskContract.methods
-      .addTask()
-      .send({ from: account })
-      .then((receipt) => {
-        console.log("Task added to blockchain:", receipt);
-      })
-      .catch((err) => console.log("Failed to add task to blockchain:", err.message));
-  }
-
-  return (
-    <div className="bg-gray-200 lg:grid lg:grid-cols-1 content-start gap-4">
-      <section className="lg:w-[1000px] gap-12 p-4 lg:grid lg:grid-cols-2 items-center justify-between">
-        {/* Connect wallet button */}
-        <button onClick={handleLogin} className="bg-blue-500 text-white p-2 rounded-md mb-4">
-          Connect Wallet
-        </button>
-=======
   // Connect to Ethereum wallet (MetaMask)
   const handleLogin = async () => {
     if (window.ethereum) {
@@ -277,7 +197,6 @@ const ShowTodoList = () => {
 
         {/* CreateTodo Component (Visible Only When Wallet is Connected) */}
         {account && <CreateTodo addTaskToBlockchain={addTaskToBlockchain}/>}
->>>>>>> 84f2da2 (added ai and blockchain)
 
         {/* Todo List Section */}
         <section
@@ -285,11 +204,7 @@ const ShowTodoList = () => {
           className="bg-white p-6 rounded-lg mr-10 lg:w-[950px] shadow-lg flex flex-col justify-start items-start"
           style={{
             overflowY: "auto",
-<<<<<<< HEAD
-            maxHeight: "calc(80vh - 120px)", // Adjust this value based on your layout
-=======
             maxHeight: "calc(80vh - 120px)",
->>>>>>> 84f2da2 (added ai and blockchain)
           }}
         >
           <p className="font-semibold text-2xl text-black mb-4">TODO List</p>
@@ -304,23 +219,16 @@ const ShowTodoList = () => {
               />
             ))}
           </ul>
-<<<<<<< HEAD
-=======
           <div className="absolute overflow-auto"> <Chatbot /></div>
->>>>>>> 84f2da2 (added ai and blockchain)
         </section>
 
         {/* Analytics Section */}
         <section className="flex items-center justify-center">
-<<<<<<< HEAD
-          <Analytics />
-=======
         <Analytics
   todo={todo}
   verifyTaskHash={verifyTaskHash} // Directly pass the function reference
 />
 
->>>>>>> 84f2da2 (added ai and blockchain)
         </section>
 
         {/* Update Todo Modal */}
@@ -335,16 +243,10 @@ const ShowTodoList = () => {
           </section>
         )}
       </section>
-<<<<<<< HEAD
-=======
      
->>>>>>> 84f2da2 (added ai and blockchain)
     </div>
   );
 };
 
 export default ShowTodoList;
-<<<<<<< HEAD
-=======
 
->>>>>>> 84f2da2 (added ai and blockchain)
