@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import {API} from "../config"
 export function UpdateTodo({ _id, handleClose, handleUpdate }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
