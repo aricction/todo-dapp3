@@ -8,23 +8,23 @@ contract TodoList {
         uint id;
         string content;
         bool completed;
-<<<<<<< HEAD
+
     }
 
     // Mapping to store tasks by their ID
     mapping(uint => Task) public tasks;
-=======
+
         string taskHash;
     }
     
     // Event to log task details when added
     event TaskAdded(uint id, string content, bool completed, string taskHash);
->>>>>>> 84f2da2 (added ai and blockchain)
+
 
     // Event to notify when a task is completed
     event TaskCompleted(uint id, bool completed);
 
-<<<<<<< HEAD
+
     // Constructor to initialize taskCount
     constructor() {
         taskCount = 0;
@@ -34,7 +34,7 @@ contract TodoList {
     function addTask(string memory _content) public {
         taskCount++; // Increment task count
         tasks[taskCount] = Task(taskCount, _content, false); // Add new task with initial content and 'completed' false
-=======
+
     // Mapping to store tasks by their ID
     mapping(uint => Task) public tasks;
 
@@ -43,17 +43,17 @@ contract TodoList {
         taskCount++; // Increment task count
         tasks[taskCount] = Task(taskCount, _content, false, _taskHash); // Store task in mapping
         emit TaskAdded(taskCount, _content, false, _taskHash);
->>>>>>> 84f2da2 (added ai and blockchain)
+
     }
 
     // Function to toggle the completion of a task
     function toggleCompleted(uint _id) public {
-<<<<<<< HEAD
+
         Task storage _task = tasks[_id]; // Get task from storage (not memory)
         _task.completed = !_task.completed; // Toggle the completed status
         emit TaskCompleted(_id, _task.completed); // Emit event
     }
-=======
+
         require(_id > 0 && _id <= taskCount, "Task ID is out of range"); // Ensure valid task ID
         Task storage _task = tasks[_id]; // Get task from storage
         _task.completed = !_task.completed; // Toggle the completed status
@@ -73,5 +73,5 @@ contract TodoList {
         Task memory task = tasks[_taskId];
         return (task.content, task.completed, task.taskHash);
     }
->>>>>>> 84f2da2 (added ai and blockchain)
+
 }
