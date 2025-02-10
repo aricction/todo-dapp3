@@ -1,17 +1,18 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const TodoSchema = new mongoose.Schema({
-    title:{type: "String", require:true},
-    description:{type:"String"},
-
-    priority:{ type:String, enum: ['low', 'medium', 'high'],
-        default: 'medium'
+    title: { type: String, required: true },  
+    description: { type: String },
+    priority: {
+        type: String,
+        enum: ["low", "medium", "high"],
+        default: "medium"
     },
-    completed:{
-        type:Boolean,
+    completed: {
+        type: Boolean,
         default: false
     },
-    aiEnhancedDetails:{
+    aiEnhancedDetails: {
         type: Object,
         default: null
     },
@@ -19,7 +20,7 @@ const TodoSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
-
+});
 
 const Todo = mongoose.model("Todo", TodoSchema);
 
