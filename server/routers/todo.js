@@ -1,21 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 84f2da2 (added ai and blockchain)
 const {getAllTodo, postCreateTodo, putUpdateTodo, deleteTodo} = require("../controllers/todo");
 /**
  * 
  */
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 84f2da2 (added ai and blockchain)
 router.get("/", getAllTodo);
 
 /**
@@ -32,14 +24,12 @@ router.post("/", postCreateTodo);
  * @access public
  */
 router.put("/:id", putUpdateTodo);
-<<<<<<< HEAD
+
 if (!_id) {
     console.error("Error: Todo ID is undefined");
     return;
 }
-=======
 
->>>>>>> 84f2da2 (added ai and blockchain)
 
 
 /**
