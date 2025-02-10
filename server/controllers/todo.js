@@ -1,65 +1,76 @@
 const Todo = require("../models/todo");
+const mongoose = require("mongoose");
 
 /**
- * The find() method will return all the todos in the collection.
- * If the collection is empty, it will return a 404 error.
+ * Get all TODOs
  */
-exports.getAllTodo = (req, res) => {
-    Todo.find()
-        .then((todos) => res.json(todos))
-        .catch((err) => {
-            res.status(404).json({ message: "TODOs not found", error: err.message });
-        });
+exports.getAllTodo = async (req, res) => {
+    try {
+        const todos = await Todo.find();
+        if (todos.length === 0) {
+            return res.status(204).send(); // 204 No Content
+        }
+        res.json(todos);
+    } catch (error) {
+        res.status(500).json({ message: "Failed to fetch todos", error: error.message });
+    }
 };
 
 /**
- * The create() method will create a todo and return a success message.
- * Otherwise, it will return a 400 error.
+ * Create a new TODO
  */
-exports.postCreateTodo = (req, res) => {
-    Todo.create(req.body)
-        .then((data) => res.json({ message: "Todo added successfully", data }))
-        .catch((error) => res.status(400).json({ message: "Failed to add todo", error: error.message }));
+exports.postCreateTodo = async (req, res) => {
+    try {
+        if (!req.body || !req.body.title) {
+            return res.status(400).json({ message: "Title is required" });
+        }
+        const todo = await Todo.create(req.body);
+        res.status(201).json({ message: "Todo added successfully", data: todo });
+    } catch (error) {
+        res.status(400).json({ message: "Failed to add todo", error: error.message });
+    }
 };
 
 /**
- * The findByIdAndUpdate() will require two parameters: the id and data of the todo to be updated.
- * The id parameter will be extracted from req.params.id.
+ * Update a TODO by ID
  */
-exports.putUpdateTodo = (req, res) => {
-    console.log("Updating ID:", req.params.id); // Debugging line
+exports.putUpdateTodo = async (req, res) => {
+    console.log("Updating ID:", req.params.id);
 
-    console.log("Updating Todo ID:", _id);
-
-    if (!req.params.id) {
-        return res.status(400).json({ message: "ID parameter is required" });
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ message: "Invalid ID format" });
     }
 
-    Todo.findByIdAndUpdate(req.params.id, req.body, { new: true }) 
-        .then((data) => {
-            if (!data) {
-                return res.status(404).json({ message: "Todo not found" });
-            }
-            res.json({ message: "Updated successfully", data });
-        })
-        .catch((error) => res.status(500).json({ message: "Failed to update", error: error.message }));
+    try {
+        const updatedTodo = await Todo.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
+        if (!updatedTodo) {
+            return res.status(404).json({ message: "Todo not found" });
+        }
+        res.json({ message: "Updated successfully", data: updatedTodo });
+    } catch (error) {
+        res.status(500).json({ message: "Failed to update", error: error.message });
+    }
 };
 
 /**
- * The findByIdAndDelete() method will require only one parameter: the id of the todo.
+ * Delete a TODO by ID
  */
-exports.deleteTodo = (req, res) => {
-    console.log("Deleting ID:", req.params.id); // Debugging line
+exports.deleteTodo = async (req, res) => {
+    console.log("Deleting ID:", req.params.id);
 
-    if (!req.params.id) {
-        return res.status(400).json({ message: "ID parameter is required" });
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ message: "Invalid ID format" });
     }
-    Todo.findByIdAndDelete(req.params.id)
-        .then((data) => {
-            if (!data) {
-                return res.status(404).json({ message: "Todo not found" });
-            }
-            res.json({ message: "Todo deleted successfully", data });
-        })
-        .catch((err) => res.status(500).json({ message: "Failed to delete", error: err.message }));
+
+    try {
+        const deletedTodo = await Todo.findByIdAndDelete(id);
+        if (!deletedTodo) {
+            return res.status(404).json({ message: "Todo not found" });
+        }
+        res.json({ message: "Todo deleted successfully", data: deletedTodo });
+    } catch (error) {
+        res.status(500).json({ message: "Failed to delete", error: error.message });
+    }
 };
