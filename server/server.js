@@ -20,9 +20,9 @@ app.use(cors({ origin: "https://todo-dapp3-3.onrender.com" })); //frontend url
 app.use(express.json({ extended: false }));
 app.get("/", (req, res) => res.send("Server up and running"));
 
-app.use("/api/todo", todo);
-app.use("/auth", auth);
 app.use("/login", login);
+app.use("/auth", auth);
+app.use("/api/todo", todo);
 app.use("/chatbot", ai);
 
 
