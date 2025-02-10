@@ -15,7 +15,7 @@ connectDB();
  * Added cors so that we can make the api 
  * calls from the frontend application like react.
  */
-app.use(cors({ origin: "https://todo-dapp3-3.onrender.com" })); //frontend url
+app.use(cors({ origin: "https://todo-dapp3-3.onrender.com" , credentials: true})); //frontend url
 
 app.use(express.json({ extended: false }));
 app.get("/", (req, res) => res.send("Server up and running"));
