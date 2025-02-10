@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import {API} from "../config"
+import { API_BASE_URL } from "../config"; // Import API base URL
+
 export function UpdateTodo({ _id, handleClose, handleUpdate }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/todo/${_id}`)
+        axios.get(`${API_BASE_URL}/api/todo/${_id}`)
             .then((res) => {
                 setTitle(res.data.title);
                 setDescription(res.data.description);
@@ -17,12 +18,9 @@ export function UpdateTodo({ _id, handleClose, handleUpdate }) {
     function handleSubmit(e) {
         e.preventDefault();
 
-        const updatedTodo = {
-            title,
-            description,
-        };
+        const updatedTodo = { title, description };
 
-        axios.put(`http://localhost:3000/api/todo/${_id}`, updatedTodo)
+        axios.put(`${API_BASE_URL}/api/todo/${_id}`, updatedTodo)
             .then(() => {
                 handleUpdate();
                 handleClose();
