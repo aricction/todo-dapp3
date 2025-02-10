@@ -77,7 +77,9 @@ const RegisterForm = () => {
           >
             {loading ? "Registering in..." : "Register"}
           </button>
-          <p><Link to="/login">Already Registered?</Link></p>
+            <p className="text-center text-sm mt-2">
+            Already an user? <Link to="/login" className="text-blue-500">Login here</Link>
+          </p>
         </form>
       </div>
     </div>
