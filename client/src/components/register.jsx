@@ -33,7 +33,7 @@ const RegisterForm = () => {
       localStorage.setItem("authToken", token);
 
       // Redirect to home or dashboard
-      navigate("/");
+      navigate("/todo");
     } catch (err) {
       console.error(err.response ? err.response.data : err.message);
       setError(err.response?.data?.msg || "Register failed, please try again.");
