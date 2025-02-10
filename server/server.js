@@ -5,7 +5,6 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const todo = require("./routers/todo");
 const auth = require("./routers/auth");
-const todo = require("./routers/todo");
 const login = require("./routers/login")
 
 const ai = require("./routers/aiRoute")
