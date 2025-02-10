@@ -28,12 +28,9 @@ exports.postCreateTodo = (req, res) => {
  */
 exports.putUpdateTodo = (req, res) => {
     console.log("Updating ID:", req.params.id); // Debugging line
-<<<<<<< HEAD
+
     console.log("Updating Todo ID:", _id);
 
-=======
-   
->>>>>>> 84f2da2 (added ai and blockchain)
     if (!req.params.id) {
         return res.status(400).json({ message: "ID parameter is required" });
     }
