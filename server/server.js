@@ -3,17 +3,13 @@ const express = require('express');
 const app = express();
 const cors = require("cors");
 const connectDB = require("./config/db");
-<<<<<<< HEAD
-
 const todo = require("./routers/todo");
-
-=======
 const auth = require("./routers/auth");
 const todo = require("./routers/todo");
 const login = require("./routers/login")
 
 const ai = require("./routers/aiRoute")
->>>>>>> 84f2da2 (added ai and blockchain)
+
 connectDB();
 
 /**
@@ -26,12 +22,10 @@ app.use(express.json({ extended: false }));
 app.get("/", (req, res) => res.send("Server up and running"));
 
 app.use("/api/todo", todo);
-<<<<<<< HEAD
-=======
 app.use("/auth", auth);
 app.use("/login", login);
 app.use("/chatbot", ai);
->>>>>>> 84f2da2 (added ai and blockchain)
+
 
 const port = 3000;
 
