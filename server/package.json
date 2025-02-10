@@ -12,13 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "ganache-cli": "^6.12.2",
     "jsonwebtoken": "^9.0.2",
-=======
     "@langchain/core": "^0.3.39",
     "@langchain/openai": "^0.4.3",
     "bcrypt": "^5.1.1",
@@ -32,7 +30,6 @@
     "js-sha256": "^0.11.0",
     "jsonwebtoken": "^9.0.2",
     "langchain": "^0.3.15",
->>>>>>> 84f2da2 (added ai and blockchain)
     "mongoose": "^8.9.4",
     "react-icons": "^5.4.0",
     "solc": "^0.8.21",
