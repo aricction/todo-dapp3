@@ -25,10 +25,7 @@ router.post("/", postCreateTodo);
  */
 router.put("/:id", putUpdateTodo);
 
-if (!_id) {
-    console.error("Error: Todo ID is undefined");
-    return;
-}
+
 
 
 
